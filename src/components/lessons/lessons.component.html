@@ -1,0 +1,29 @@
+
+      
+        <form [formGroup]="lessonForm">
+          <mat-form-field appearance="outline" class="full-width">
+            <mat-label>Course ID</mat-label>
+            <input matInput formControlName="courseId" type="number">
+          </mat-form-field>
+      
+          <mat-form-field appearance="outline" class="full-width">
+            <mat-label>Lesson ID (for update/delete only)</mat-label>
+            <input matInput formControlName="lessonId" type="number">
+          </mat-form-field>
+      
+          <mat-form-field appearance="outline" class="full-width">
+            <mat-label>Lesson Title</mat-label>
+            <input matInput formControlName="title">
+          </mat-form-field>
+      
+          <mat-form-field appearance="outline" class="full-width">
+            <mat-label>Lesson Content</mat-label>
+            <textarea matInput formControlName="content"></textarea>
+          </mat-form-field>
+      
+          <div class="button-group">
+            <button mat-raised-button class="turquoise-btn" (click)="addLesson()">Add Lesson</button>
+            <button mat-raised-button class="accent-btn" (click)="updateLesson()">Update Lesson</button>
+            <button mat-raised-button class="warn-btn" (click)="deleteLesson()">Delete Lesson</button>
+          </div>
+        </form>

@@ -1,0 +1,15 @@
+
+
+
+<div> 
+  <h2>{{ course?.title }}</h2>
+  <p>{{ course?.description }}</p>
+  <p>Teacher ID: {{ course?.teacherId }}</p>
+
+  <div *ngIf="lessons.length > 0">
+    <h3>Lessons</h3>
+    <div *ngFor="let lesson of lessons">
+      <p>{{ lesson.title }} - {{ lesson.content }}</p>
+    </div>
+  </div>
+</div>

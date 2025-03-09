@@ -1,0 +1,60 @@
+<!-- 
+<div>
+    <p class="title">{{ isLogin ? 'Login' : 'Sign Up' }}</p>
+    <form [formGroup]="SignInForm" (ngSubmit)="Submit()">
+        <input *ngIf="!isLogin" type="text" placeholder="Name" formControlName="name">
+        <br>
+        <input type="email" placeholder="Email" formControlName="email">
+        <br>
+        <input type="password" placeholder="Password" formControlName="password">
+        <br>
+        <select *ngIf="!isLogin" formControlName="role">
+            <option value="student">Student</option>
+            <option value="teacher">Teacher</option>
+        </select>
+        <br>
+        <button type="submit">{{ isLogin ? 'Login' : 'Sign Up' }}</button>
+    </form>
+    <button (click)="isLogin = !isLogin">Switch to {{ isLogin ? 'Sign Up' : 'Login' }}</button>
+</div> -->
+
+
+<div>
+    <p class="title">{{ isLogin ? 'Login' : 'Sign Up' }}</p>
+    <form [formGroup]="SignInForm" (ngSubmit)="Submit()">
+      
+        <input *ngIf="!isLogin" type="text" placeholder="Name" formControlName="name">
+        <div class="error" *ngIf="SignInForm.get('name')?.invalid && SignInForm.get('name')?.touched">
+            Name is required.
+        </div>
+        <br>
+
+       
+        <input type="email" placeholder="Email" formControlName="email">
+        <div class="error" *ngIf="SignInForm.get('email')?.invalid && SignInForm.get('email')?.touched">
+            <span *ngIf="SignInForm.get('email')?.errors?.['required']">Email is required.</span>
+            <span *ngIf="SignInForm.get('email')?.errors?.['email']">Invalid email format.</span>
+        </div>
+        <br>
+
+        <input type="password" placeholder="Password" formControlName="password">
+        <div class="error" *ngIf="SignInForm.get('password')?.invalid && SignInForm.get('password')?.touched">
+            <span *ngIf="SignInForm.get('password')?.errors?.['required']">Password is required.</span>
+            <span *ngIf="SignInForm.get('password')?.errors?.['minlength']">Password must be at least 6 characters.</span>
+        </div>
+        <br>
+
+        <select *ngIf="!isLogin" formControlName="role">
+            <option value="student">Student</option>
+            <option value="teacher">Teacher</option>
+        </select>
+        <div class="error" *ngIf="SignInForm.get('role')?.invalid && SignInForm.get('role')?.touched">
+            Role is required.
+        </div>
+        <br>
+
+        <button type="submit" [disabled]="SignInForm.invalid">{{ isLogin ? 'Login' : 'Sign Up' }}</button>
+    </form>
+
+    <button (click)="isLogin = !isLogin">Switch to {{ isLogin ? 'Sign Up' : 'Login' }}</button>
+</div>
