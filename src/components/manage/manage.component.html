@@ -14,10 +14,10 @@
                 </mat-form-field>
 
                 <mat-form-field appearance="outline" class="full-width">
-                    <mat-label>content</mat-label>
+                    <mat-label>Description</mat-label>
                     <input matInput type="text" formControlName="content" />
-                    @if(myForm.get('content')?.hasError('required')) {
-                    <mat-error>content is required.</mat-error>}
+                    @if(myForm.get('description')?.hasError('required')) {
+                    <mat-error>description is required.</mat-error>}
                 </mat-form-field>
             </mat-card-content>
             <mat-card-actions>
@@ -50,7 +50,7 @@
         <mat-card>
             <mat-card-content>
                 <mat-form-field appearance="outline" class="full-width">
-                    <mat-label>id</mat-label>
+                    <mat-label>Id</mat-label>
                     <input matInput formControlName="id" />
                     @if(myForm.get('id')?.hasError('required')) {
                     <mat-error>id is required.</mat-error>}
@@ -64,10 +64,10 @@
                 </mat-form-field>
         
                 <mat-form-field appearance="outline" class="full-width">
-                    <mat-label>content</mat-label>
+                    <mat-label>Description</mat-label>
                     <input matInput type="text" formControlName="content" />
-                    @if(myForm.get('content')?.hasError('required')) {
-                    <mat-error>content is required.</mat-error>}
+                    @if(myForm.get('description')?.hasError('required')) {
+                    <mat-error>description is required.</mat-error>}
                 </mat-form-field>
             </mat-card-content>
             <mat-card-actions>

@@ -37,7 +37,7 @@ export class ManageComponent {
     this.myForm = this.fb.group({
       id: [''],
       title: [''],
-      content: ['']
+      description: [''],
     });
   }
 
@@ -90,21 +90,25 @@ loadCourses(){
   }
 
   onSubmitDelete() {
-    const courseId = this.myForm.value.id
+    const courseId = Number(this.myForm.value.id);
+    if (!courseId || isNaN(courseId)) { 
+      console.error('Invalid course ID');
+      return;
+  }
     console.log("the id:",courseId);
     this.courseService.deleteCourse(courseId).subscribe(
       (data) => {
         console.log(data);
       },
       (error) => {
-        console.error('Error fetching courses:', error);
+        console.error('Error deleting course:', error);
         this.isForbidden = true
       })
   }
   onSubmitUpdate() {
     const courseData = {
       title: this.myForm.value.title,
-      description: this.myForm.value.content,
+      description: this.myForm.value.description,
       teacherId: Number(localStorage.getItem('userId'))
     }
     const courseId = this.myForm.value.id
