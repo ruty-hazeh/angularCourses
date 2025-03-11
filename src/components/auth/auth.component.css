@@ -1,5 +1,95 @@
+/* עיצוב כללי של הדף */
+.auth-container {
+    width: 350px;
+    background: black;
+    color: white;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0px 5px 15px rgba(255, 77, 136, 0.5);
+    text-align: center;
+    margin: 50px auto;
+}
+
+/* כותרת */
+.title {
+    font-size: 24px;
+    font-weight: bold;
+    color: #ff4d88;
+    margin-bottom: 20px;
+}
+
+/* טופס */
+.auth-form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+/* שדות קלט */
+.auth-form input,
+.auth-form select {
+    padding: 10px;
+    font-size: 16px;
+    border: 2px solid #ff4d88;
+    border-radius: 5px;
+    background: black;
+    color: white;
+    outline: none;
+    transition: 0.3s ease-in-out;
+}
+
+.auth-form input::placeholder {
+    color: rgba(255, 255, 255, 0.7);
+}
+
+/* אפקט בעת התמקדות בשדה */
+.auth-form input:focus,
+.auth-form select:focus {
+    border-color: white;
+}
+
+/* הודעות שגיאה */
 .error {
-    color: red;
-    font-size: 12px;
-    margin-top: 2px;
+    color: #ff4d88;
+    font-size: 14px;
+    text-align: left;
+}
+
+/* כפתורים */
+.auth-button {
+    padding: 12px;
+    font-size: 18px;
+    font-weight: bold;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: 0.3s ease-in-out;
+    text-transform: uppercase;
+    margin-top: 10px;
+}
+
+.submit {
+    background-color: #ff4d88;
+    color: white;
+    border: none;
+}
+
+.submit:disabled {
+    background-color: gray;
+    cursor: not-allowed;
+}
+
+.submit:hover:not(:disabled) {
+    background-color: #e63975;
+    transform: scale(1.05);
+}
+
+.switch {
+    background: none;
+    border: 2px solid #ff4d88;
+    color: #ff4d88;
+}
+
+.switch:hover {
+    background-color: #ff4d88;
+    color: white;
 }
