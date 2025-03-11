@@ -3,8 +3,8 @@
     @if(this.courses.length>0){
     @for (course of this.courses; track course.id) {
     <div class="course-card">
-        <h3>{{ course.title }}</h3>
-        <!-- <p>{{ course.description }}</p> -->
+        <div>Id: {{course.id}}</div>
+        <h3>Title: {{ course.title }}</h3>
         <button (click)="add(course.id)">Enroll</button>
         <button (click)="remove(course.id)">Unenroll</button>
         <button (click)="viewCourseDetails(course.id)">View</button>

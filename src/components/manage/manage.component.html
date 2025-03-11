@@ -15,7 +15,7 @@
 
                 <mat-form-field appearance="outline" class="full-width">
                     <mat-label>Description</mat-label>
-                    <input matInput type="text" formControlName="content" />
+                    <input matInput type="text" formControlName="description" />
                     @if(myForm.get('description')?.hasError('required')) {
                     <mat-error>description is required.</mat-error>}
                 </mat-form-field>
@@ -65,7 +65,7 @@
         
                 <mat-form-field appearance="outline" class="full-width">
                     <mat-label>Description</mat-label>
-                    <input matInput type="text" formControlName="content" />
+                    <input matInput type="text" formControlName="description" />
                     @if(myForm.get('description')?.hasError('required')) {
                     <mat-error>description is required.</mat-error>}
                 </mat-form-field>

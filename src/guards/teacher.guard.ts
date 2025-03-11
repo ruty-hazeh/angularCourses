@@ -5,7 +5,7 @@ export const teacherGuard: CanActivateFn = (route, state) => {
   
   const router = inject(Router);
   
-  if (localStorage.getItem('role') === 'teacher')
+  if (sessionStorage.getItem('role') === 'teacher')
     return true;
   alert('you are not teacher')
 

@@ -49,8 +49,8 @@ export class AuthComponent implements OnInit {
           next: (res) => {
             alert('Login successful!');
             sessionStorage.setItem('token', res.token);
-            localStorage.setItem('userId', res.userId);
-            localStorage.setItem('role', res.role);
+            sessionStorage.setItem('userId', res.userId);
+            sessionStorage.setItem('role', res.role);
             this.router.navigate(['/home']);
           },
           error: (err) => {
@@ -63,8 +63,8 @@ export class AuthComponent implements OnInit {
           next: (res) => {
             alert('Registration successful!');
             sessionStorage.setItem('token', res.token);
-            localStorage.setItem('userId', res.userId);
-            localStorage.setItem('role', res.role);
+            sessionStorage.setItem('userId', res.userId);
+            sessionStorage.setItem('role', res.role);
             this.router.navigate(['/home']);
           },
           error: (err) => {

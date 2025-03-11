@@ -76,11 +76,17 @@ loadCourses(){
 
   onSubmitAdd() {
     console.log(this.myForm.value);
-    const { title, description } = this.myForm.value
-    const data = { title, description }
+    // const { title, description } = this.myForm.value
+    // const data = { title, description }
+    const data = {
+      title: this.myForm.value.title,
+      description: this.myForm.value.description,
+      teacherId: Number(sessionStorage.getItem('userId'))
+    }
 
     this.courseService.createCourse(data).subscribe({
       next: res =>{ console.log('Success:', res),
+        alert('add successfully')
         this.myForm.reset();
       },
       error: err =>{ console.error('Error:', err)
@@ -92,6 +98,7 @@ loadCourses(){
   onSubmitDelete() {
     const courseId = Number(this.myForm.value.id);
     if (!courseId || isNaN(courseId)) { 
+      alert('Invalid course ID');
       console.error('Invalid course ID');
       return;
   }
@@ -99,8 +106,10 @@ loadCourses(){
     this.courseService.deleteCourse(courseId).subscribe(
       (data) => {
         console.log(data);
+        alert('delete successfully')
       },
       (error) => {
+        alert('Error deleting course');
         console.error('Error deleting course:', error);
         this.isForbidden = true
       })
@@ -116,6 +125,7 @@ loadCourses(){
 
     this.courseService.updateCourse(courseData,courseId).subscribe(
       (data) => {
+        alert("course updated succesfully");
         console.log("course updated succesfully", data);
         this.loadCourses();
       },

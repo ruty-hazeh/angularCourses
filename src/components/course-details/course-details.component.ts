@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CoursesService } from '../../services/course.service';
 import { Course } from '../../models/course';
-import { LessonsService } from '../../services/lesson.service';
+import { LessonsService } from '../../services/lessons.service';
 import { ActivatedRoute } from '@angular/router';
 import { Lesson } from '../../models/lesson';
 import { CommonModule } from '@angular/common';
@@ -56,5 +56,5 @@ export class CourseDetailsComponent implements OnInit {
     );
   }
 
-  userId = localStorage.getItem('userId');
+  userId = sessionStorage.getItem('userId');
 }

@@ -26,9 +26,8 @@ export class CourseListComponent implements OnInit {
     });
   }
 
-  // פונקציה להוספה לקורס
   add(courseId: number) {
-    const userId = localStorage.getItem('userId');
+    const userId = sessionStorage.getItem('userId');
     if (userId) {
       this.courseService.joinCourse(courseId, userId).subscribe({
         next: () => {
@@ -42,9 +41,8 @@ export class CourseListComponent implements OnInit {
     }
   }
 
-  // פונקציה להסרת קורס
   remove(courseId: number) {
-    const userId = localStorage.getItem('userId');
+    const userId = sessionStorage.getItem('userId');
     if (userId) {
       this.courseService.leaveCourse(courseId, userId).subscribe({
         next: () => {
