@@ -116,7 +116,7 @@
 //   }
 // }
 
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatInputModule } from '@angular/material/input';
@@ -127,6 +127,8 @@ import { CommonModule } from '@angular/common';
 import { LessonsService } from '../../services/lessons.service';
 import { Lesson } from '../../models/lesson';
 import { MatListModule } from '@angular/material/list';
+import { Course } from '../../models/course';
+import { CoursesService } from '../../services/course.service';
 
 @Component({
   selector: 'app-lessons',
@@ -144,7 +146,8 @@ import { MatListModule } from '@angular/material/list';
     MatListModule
   ]
 })
-export class LessonsComponent {
+export class LessonsComponent implements OnInit{
+  courses: Course[] = [];
   lessons: Lesson[] = [];
   lessonForm: FormGroup;
   isForbidden = false;
@@ -153,7 +156,7 @@ export class LessonsComponent {
   deleteFlag = false;
   updateFlag = false;
 
-  constructor(private fb: FormBuilder, private lessonService: LessonsService) {
+  constructor(private fb: FormBuilder, private lessonService: LessonsService,private coursesService:CoursesService) {
     this.lessonForm = this.fb.group({
       courseId: ['', Validators.required],
       lessonId: [''],
@@ -161,18 +164,48 @@ export class LessonsComponent {
       content: ['', Validators.required]
     });
   }
-
-  loadLessons(courseId: number) {
-    this.lessonService.getLessons(courseId).subscribe({
-      next: (lessons) => {
-        this.lessons = lessons;
+  ngOnInit(): void {
+    this.loadCourses();
+  }
+  
+  loadCourses() {
+    this.coursesService.getAllCourses().subscribe({
+      next: (courses: Course[]) => {
+        this.courses = courses;
       },
       error: (err) => {
-        console.error('Error loading lessons:', err);
-        this.isForbidden = true;
+        console.error('Error loading courses:', err);
       }
     });
+
   }
+  // loadLessons(courseId: number) {
+  //   this.lessonService.getLessons(courseId).subscribe({
+  //     next: (lessons) => {
+  //       this.lessons = lessons;
+  //     },
+  //     error: (err) => {
+  //       console.error('Error loading lessons:', err);
+  //       this.isForbidden = true;
+  //     }
+  //   });
+  // }
+
+  loadLessons() {
+    this.loadCourses();
+    this.courses.forEach(course => {
+      this.lessonService.getLessons(course.id).subscribe({
+        next: (lessons) => {
+          this.lessons = lessons;
+        },
+
+        error: (err) => {
+          console.error('Error loading lessons:', err);
+        }
+      });
+    });
+  }
+
 
   addClick() {
     this.addFlag = true;
@@ -222,11 +255,13 @@ export class LessonsComponent {
   }
 
   onSubmitUpdate() {
+
     const { courseId, lessonId, title, content } = this.lessonForm.value;
-    this.lessonService.updateLesson(courseId, lessonId, { title, content }).subscribe({
+
+      this.lessonService.updateLesson(courseId,lessonId, { title, content,courseId }).subscribe({
       next: () => {
         alert('Lesson updated successfully!');
-        this.loadLessons(courseId);
+        this.loadLessons();
       },
       error: (err) => {
         console.error('Error updating lesson:', err);

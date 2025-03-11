@@ -2,7 +2,7 @@
 
 
 <div> 
-  <p>Id: {{ course?.id }}</p>
+  <p>Course Id: {{ course?.id }}</p>
   <h2>Title: {{ course?.title }}</h2>
   <p>Teacher ID: {{ course?.teacherId }}</p>
   <p>Description: {{ course?.description }}</p>
@@ -10,9 +10,7 @@
   <div *ngIf="lessons.length > 0">
     <h3>Lessons</h3>
     <div *ngFor="let lesson of lessons">
-      <p>Id: {{ lesson.id }} </p>
-      <p>Title: {{ lesson.title }} </p>
-      <p>Content: {{ lesson.content }} </p>
+      <p>Lesson Id: {{ lesson.id }}  Title: {{ lesson.title }}  Content: {{ lesson.content }} </p>
     </div>
   </div>
 </div>
